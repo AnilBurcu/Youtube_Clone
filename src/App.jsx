@@ -1,16 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import VideoDetail from "./pages/VideoDetail";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Feed from "./pages/Feed";
-import SearchResult from "./pages/SearchResult";
 import Header from "./components/Header";
+import VideoDetail from "./pages/VideoDetail";
+
 const App = () => {
   return (
     <BrowserRouter>
       <Header />
+
       <Routes>
         <Route path="/" element={<Feed />} />
-        <Route path="/detail" element={<VideoDetail />} />
-        <Route path="/results" element={<SearchResult />} />
+        <Route path="/watch" element={<VideoDetail />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,15 +1,30 @@
-import Sidebar from "../components/Sidebar";
+import { useContext } from "react";
+import SideBar from "../components/SideBar";
+import { VideoContext } from "../context/videoContext";
+import Loader from "../components/Loader";
+import ErrorDisplay from "../components/ErrorDisplay";
+import VideoCard from "../components/VideoCard";
 
 const Feed = () => {
-  return (
-    <div className="flex gap-5">
-      <Sidebar />
+  const { videos, error, isLoading } = useContext(VideoContext);
 
-      <div className="px-5 py-3">
-        <h3>Video</h3>
-        <h3>Video</h3>
-        <h3>Video</h3>
-        <h3>Video</h3>
+  return (
+    <div className="flex">
+      <SideBar />
+
+      <div className="videos">
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <ErrorDisplay error={error} />
+        ) : (
+          videos?.map(
+            (item) =>
+              item.type === "video" && (
+                <VideoCard video={item} key={item.videoId} />
+              )
+          )
+        )}
       </div>
     </div>
   );
